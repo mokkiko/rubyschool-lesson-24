@@ -5,3 +5,4 @@ applications:
   instances: 1
   url: bootstrap.${target-base}
   path: .
+
