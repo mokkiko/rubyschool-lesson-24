@@ -6,7 +6,7 @@ require 'sqlite3'
 
 def get_db
   db = SQLite3::Database.new 'barbershop.db'
-
+  db.results_as_hash = true
   return db
 end
 
@@ -24,6 +24,14 @@ configure do
 			"datestamp" TEXT,
 			"barber" TEXT,
 			"color" TEXT
+		)'
+  db.execute 'CREATE TABLE IF NOT EXISTS
+		"Barbers"
+		(
+			"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+			"barber_name" TEXT,
+			"personal_address" TEXT,
+			"work_address" TEXT
 		)'
 
 end
@@ -48,6 +56,8 @@ end
 
 get '/about'do
   @error = "something wrong"
+  db = get_db
+  @db_results_barbers =db.execute 'select * from Barbers'
   erb :about
 end
 
@@ -108,4 +118,10 @@ end
 
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+end
+
+get '/showusers' do
+  db = get_db
+  @db_results_users = db.execute 'select * from Users order by id desc'
+  erb :showusers
 end

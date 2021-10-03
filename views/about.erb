@@ -7,8 +7,35 @@
 
 </head>
 <body>
-<h1>HI</h1>
+
 <h5 class="some">наш барбершоп самый самый барбе барбер</h5>
+
+
+<h2 class="some">Наши БАРБЕРЫ</h2>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Адрес работы</th>
+    <th>Адрес где живет</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @db_results_barbers.each do |row| %>
+    <tr>
+      <td><%= row['barber_name'] %></td>
+      <td><%= row['personal_address'] %></td>
+      <td><%= row['work_address'] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>
+
+
 
 </body>
 </html>
