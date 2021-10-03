@@ -23,9 +23,9 @@
   </div>
   <select name="barber" class="form-select" aria-label="Default select example">
     <option selected>Выберете вашего мастера</option>
-    <option>Дракоша Тоша</option>
-    <option>РУбака кусака</option>
-    <option>Олеся бритва</option>
+    <option <%= @barber == 'Дракоша Тоша' ? 'selected' : '' %>>Дракоша Тоша</option>
+    <option <%= @barber == 'РУбака кусака' ? 'selected' : '' %>>РУбака кусака</option>
+    <option <%= @barber == 'Олеся бритва' ? 'selected' : '' %>>Олеся бритва</option>
   </select>
 
 
