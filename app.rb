@@ -53,6 +53,10 @@ before '/secure/*' do
     halt erb(:login_form)
   end
 end
+before do
+  db = get_db
+  @db_results_barbers =db.execute 'select * from Barbers'
+end
 
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
@@ -100,7 +104,6 @@ post '/visit' do
 
   db = get_db
   db.execute 'insert into Users (username, phone, datestamp, barber, color) values (?, ?, ?, ?, ?)', [@username, @phone_number, @user_date, @barber, @color ]
-
   erb "Уважаемый дргу, #{@username}, вы записались #{@user_date} к мастеру #{@barber}  будет краситься в #{@color}\n"
   #  erb :visit
 end

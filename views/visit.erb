@@ -23,9 +23,15 @@
   </div>
   <select name="barber" class="form-select" aria-label="Default select example">
     <option selected>Выберете вашего мастера</option>
-    <option <%= @barber == 'Дракоша Тоша' ? 'selected' : '' %>>Дракоша Тоша</option>
-    <option <%= @barber == 'РУбака кусака' ? 'selected' : '' %>>РУбака кусака</option>
-    <option <%= @barber == 'Олеся бритва' ? 'selected' : '' %>>Олеся бритва</option>
+
+
+    <% @db_results_barbers.each do |row| %>
+      <option <%= @barber == row['barber_name'] ? 'selected' : '' %>> <%= row['barber_name'] %> </option>
+    <% end %>
+
+<!--    <option <%#= @barber == 'Дракоша Тоша' ? 'selected' : '' %>>Дракоша Тоша</option>-->
+<!--    <option <%#= @barber == 'РУбака кусака' ? 'selected' : '' %>>РУбака кусака</option>-->
+<!--    <option <%#= @barber == 'Олеся бритва' ? 'selected' : '' %>>Олеся бритва</option>-->
   </select>
 
 
