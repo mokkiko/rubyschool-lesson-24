@@ -10,6 +10,10 @@ def get_db
   return db
 end
 
+def if_barber_exists? db, name
+  db.execute('select * FROM Barbers where name=?', [name]).length > 0
+
+end
 
 configure do
   enable :sessions
